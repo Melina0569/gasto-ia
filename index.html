@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Inteligente de Predicción del Nivel de Gasto - Gobierno Regional de Arequipa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+<base target="_blank">
+<base target="_blank">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <div class="brand-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div>
+                    <span class="brand-title">IA GOBIERNO AREQUIPA</span>
+                    <span class="brand-subtitle d-block">Sistema de Predicción de Gasto</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#inicio"><i class="fas fa-home me-1"></i> Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#datos"><i class="fas fa-database me-1"></i> Datos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#entrenamiento"><i class="fas fa-cogs me-1"></i> Entrenamiento</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#prediccion"><i class="fas fa-chart-line me-1"></i> Predicción</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admin" id="adminNavLink"><i class="fas fa-cog me-1"></i> Nueva data</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="container position-relative z-2">
+            <div class="row align-items-center min-vh-100 pt-5">
+                <div class="col-lg-7">
+                    <div class="hero-badge mb-3">
+                        <i class="fas fa-robot me-2"></i>
+                        SISTEMA DE INTELIGENCIA ARTIFICIAL
+                    </div>
+                    <h1 class="hero-title">
+                        Predicción del Nivel de Gasto
+                        <span class="text-gradient">Órdenes de Compra y Servicio</span>
+                    </h1>
+                    <p class="hero-description">
+                        Sistema inteligente basado en Redes Neuronales Artificales para clasificar automáticamente el nivel de gasto de las órdenes de compra o servicio si es Bajo, Medio o Alto.
+                    </p>
+                    <div class="hero-stats row g-3 mt-4">
+                        <div class="col-md-4">
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-network-wired"></i></div>
+                                <div class="stat-value">Órdenes</div>
+                                <div class="stat-label">Compra y Servicio</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+                                <div class="stat-value">Análisis</div>
+                                <div class="stat-label">Automático</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Categorías de Gasto</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-actions mt-5">
+                        <a href="#datos" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-database me-2"></i>Ver Datos
+                        </a>
+                        <a href="#prediccion" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-magic me-2"></i>Nueva Predicción
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="neural-visualization">
+                        <div class="nn-container">
+                            <!-- Input Layer -->
+                            <div class="nn-layer nn-input">
+                                <div class="nn-label">Entrada</div>
+                                <div class="nn-nodes">
+                                    <div class="nn-node" data-label="TIP_DOC"></div>
+                                    <div class="nn-node" data-label="ORG_CONT"></div>
+                                    <div class="nn-node" data-label="OBJ_CONT"></div>
+                                    <div class="nn-node" data-label="LST_AOS1"></div>
+                                </div>
+                            </div>
+                            <!-- Hidden Layer 1 -->
+                            <div class="nn-layer nn-hidden">
+                                <div class="nn-label">Oculta 1</div>
+                                <div class="nn-nodes">
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                </div>
+                            </div>
+                            <!-- Hidden Layer 2 -->
+                            <div class="nn-layer nn-hidden">
+                                <div class="nn-label">Oculta 2</div>
+                                <div class="nn-nodes">
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                </div>
+                            </div>
+                            <!-- Hidden Layer 3 -->
+                            <div class="nn-layer nn-hidden">
+                                <div class="nn-label">Oculta 3</div>
+                                <div class="nn-nodes">
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                    <div class="nn-node"></div>
+                                </div>
+                            </div>
+                            <!-- Output Layer -->
+                            <div class="nn-layer nn-output">
+                                <div class="nn-label">Salida</div>
+                                <div class="nn-nodes">
+                                    <div class="nn-node output-bajo" data-label="Bajo"></div>
+                                    <div class="nn-node output-medio" data-label="Medio"></div>
+                                    <div class="nn-node output-alto" data-label="Alto"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <svg class="nn-connections" id="nnConnections"></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Overview Section -->
+    <section id="datos" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-badge">PASO 1</span>
+                <h2 class="section-title">Base de Datos Histórica</h2>
+                <p class="section-subtitle">Datos incorporados del Gobierno Regional de Arequipa - Año 2026</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Data Source Info -->
+                <div class="col-lg-5">
+                    <div class="info-card">
+                        <h5 class="info-title"><i class="fas fa-database me-2"></i>Fuente de Datos</h5>
+                        <div class="data-source-info">
+                            <div class="source-item">
+                                <i class="fas fa-file-excel text-success"></i>
+                                <div>
+                                    <strong>Archivo:</strong>
+                                    <span>ordenes-compra-servicio-2026-01.xlsx</span>
+                                </div>
+                            </div>
+                            <div class="source-item">
+                                <i class="fas fa-building text-primary"></i>
+                                <div>
+                                    <strong>Entidad:</strong>
+                                    <span>Gobierno Regional de Arequipa</span>
+                                </div>
+                            </div>
+                            <div class="source-item">
+                                <i class="fas fa-calendar text-warning"></i>
+                                <div>
+                                    <strong>Período:</strong>
+                                    <span>Enero 2026</span>
+                                </div>
+                            </div>
+                            <div class="source-item">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <div>
+                                    <strong>Estado:</strong>
+                                    <span id="dataStatus">Cargando...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 p-3 bg-light rounded-3">
+                            <p class="mb-0 text-muted" style="font-size: 0.85rem;">
+                                <i class="fas fa-info-circle me-1"></i>
+                                La base de datos está incorporada en el sistema. No es necesario cargar archivos para usar la aplicación.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Fields -->
+                <div class="col-lg-7">
+                    <div class="info-card">
+                        <h5 class="info-title"><i class="fas fa-info-circle me-2"></i>Variables del Modelo</h5>
+                        <div class="info-content">
+                            <div class="field-item">
+                                <div class="field-badge bg-primary">TIP_DOC</div>
+                                <div class="field-details">
+                                    <strong>Tipo de Documento</strong>
+                                    <span>10 = Orden de Compra, 20 = Orden de Servicio</span>
+                                </div>
+                            </div>
+                            <div class="field-item">
+                                <div class="field-badge bg-success">ORG_CONT</div>
+                                <div class="field-details">
+                                    <strong>Rubro / Fuente de Financiamiento</strong>
+                                    <span>Clasificador del Ministerio de Economía y Finanzas</span>
+                                </div>
+                            </div>
+                            <div class="field-item">
+                                <div class="field-badge bg-warning">OBJ_CONT</div>
+                                <div class="field-details">
+                                    <strong>Tipo de Objeto de Contratación</strong>
+                                    <span>1 = Bienes, 2 = Servicios</span>
+                                </div>
+                            </div>
+                            <div class="field-item">
+                                <div class="field-badge bg-info">LST_AOS1</div>
+                                <div class="field-details">
+                                    <strong>Clasificador Económico del Gasto</strong>
+                                    <span>Partida presupuestal asociada</span>
+                                </div>
+                            </div>
+                            <div class="field-item">
+                                <div class="field-badge bg-danger">IMP_MONT</div>
+                                <div class="field-details">
+                                    <strong>Monto Total Adjudicado</strong>
+                                    <span>Variable objetivo (S/.)</span>
+                                </div>
+                            </div>
+                            <div class="field-item optional-field">
+                                <div class="field-badge bg-secondary">EST_DOC</div>
+                                <div class="field-details">
+                                    <strong>Estado de la Orden en SEACE (Variable Opcional)</strong>
+                                    <span>2 = Borrador, 3 = Anulada/Resoluta, 4 = Publicada/Conformidad</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Preview -->
+            <div class="row mt-4" id="dataPreviewSection">
+                <div class="col-12">
+                    <div class="preview-card">
+                        <div class="preview-header d-flex justify-content-between align-items-center">
+                            <h5><i class="fas fa-table me-2"></i>Vista Previa de Datos</h5>
+                            <span class="badge bg-primary" id="previewRowCount">Cargando...</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover preview-table" id="previewTable">
+                                <thead>
+                                    <tr>
+                                        <th>TIPO DOC</th>
+                                        <th>DESCRIPCIÓN</th>
+                                        <th>ORG_CONT</th>
+                                        <th>OBJ_CONT</th>
+                                        <th>DESCRIPCIÓN</th>
+                                        <th>LST_AOS1</th>
+                                        <th>MONTO (S/.)</th>
+                                        <th>EST_DOC</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="previewTableBody">
+                                    <tr><td colspan="8" class="text-center text-muted py-4">Cargando datos...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Stats -->
+            <div class="row mt-4" id="dataStatsSection">
+                <div class="col-12">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="statTotalRows">-</div>
+                            <div class="stat-label">Filas Totales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statCleanedRows">-</div>
+                            <div class="stat-label">Filas Válidas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statRemovedRows">-</div>
+                            <div class="stat-label">Filas Eliminadas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statP33">-</div>
+                            <div class="stat-label">Percentil 33 (S/.)</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statP66">-</div>
+                            <div class="stat-label">Percentil 66 (S/.)</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statMean">-</div>
+                            <div class="stat-label">Monto Promedio (S/.)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="nivel-distribution">
+                        <h6 class="mb-3"><i class="fas fa-chart-pie me-2"></i>Distribución de Niveles de Gasto (Variable Objetivo)</h6>
+                        <div class="nivel-bars">
+                            <div class="nivel-bar-item">
+                                <div class="nivel-bar-label">
+                                    <span class="nivel-dot nivel-bajo"></span>
+                                    <span>Bajo (≤ P33)</span>
+                                </div>
+                                <div class="nivel-bar-track">
+                                    <div class="nivel-bar-fill nivel-bajo-fill" id="barBajo"></div>
+                                </div>
+                                <span class="nivel-bar-count" id="countBajo">-</span>
+                            </div>
+                            <div class="nivel-bar-item">
+                                <div class="nivel-bar-label">
+                                    <span class="nivel-dot nivel-medio"></span>
+                                    <span>Medio (P33 < x ≤ P66)</span>
+                                </div>
+                                <div class="nivel-bar-track">
+                                    <div class="nivel-bar-fill nivel-medio-fill" id="barMedio"></div>
+                                </div>
+                                <span class="nivel-bar-count" id="countMedio">-</span>
+                            </div>
+                            <div class="nivel-bar-item">
+                                <div class="nivel-bar-label">
+                                    <span class="nivel-dot nivel-alto"></span>
+                                    <span>Alto (> P66)</span>
+                                </div>
+                                <div class="nivel-bar-track">
+                                    <div class="nivel-bar-fill nivel-alto-fill" id="barAlto"></div>
+                                </div>
+                                <span class="nivel-bar-count" id="countAlto">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Section -->
+    <section id="entrenamiento" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-badge">PASO 2</span>
+                <h2 class="section-title">Entrenamiento del Modelo</h2>
+                <p class="section-subtitle">Configure y entrene la Red Neuronal Artificial MLPClassifier</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Configuration -->
+                <div class="col-lg-4">
+                    <div class="config-card">
+                        <h5 class="config-title"><i class="fas fa-sliders-h me-2"></i>Configuración</h5>
+
+                        <div class="config-item">
+                            <label class="config-label">Arquitectura del Modelo</label>
+                            <div class="arch-display">
+                                <div class="arch-layer">
+                                    <span class="arch-node">Variables</span>
+                                    <span class="arch-arrow">→</span>
+                                </div>
+                                <div class="arch-layer">
+                                    <span class="arch-node">128</span>
+                                    <span class="arch-arrow">→</span>
+                                </div>
+                                <div class="arch-layer">
+                                    <span class="arch-node">64</span>
+                                    <span class="arch-arrow">→</span>
+                                </div>
+                                <div class="arch-layer">
+                                    <span class="arch-node">32</span>
+                                    <span class="arch-arrow">→</span>
+                                </div>
+                                <div class="arch-layer">
+                                    <span class="arch-node output">3 niveles de gasto</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="config-item">
+                            <label class="config-label">Configuración del Modelo</label>
+                            <div class="hyperparams">
+                                <div class="hyper-item">
+                                    <span>Procesamiento</span>
+                                    <span class="hyper-value">ReLU</span>
+                                </div>
+                                <div class="hyper-item">
+                                    <span>Optimización</span>
+                                    <span class="hyper-value">Adam</span>
+                                </div>
+                                <div class="hyper-item">
+                                    <span>Aprendizaje</span>
+                                    <span class="hyper-value">0.001</span>
+                                </div>
+                                <div class="hyper-item">
+                                    <span>Regularización</span>
+                                    <span class="hyper-value">L2</span>
+                                </div>
+                                <div class="hyper-item">
+                                    <span>Validación automática</span>
+                                    <span class="hyper-value">Sí</span>
+                                </div>
+                                <div class="hyper-item">
+                                    <span>Entrenamientos máximos</span>
+                                    <span class="hyper-value">500</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="config-item">
+                            <label class="config-label d-flex justify-content-between align-items-center">
+                                <span>Incluir Estado de la Orden</span>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="includeEstadoSwitch">
+                                </div>
+                            </label>
+                            <p class="config-hint">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Al activar, se incluye EST_DOC (Estado de la Orden en SEACE: 2=Borrador, 3=Anulada/Resoluta, 4=Publicada/Conformidad) como variable predictora adicional.
+                            </p>
+                        </div>
+
+                        <button class="btn btn-primary w-100 btn-train" id="btnTrain">
+                            <i class="fas fa-play me-2"></i>Entrenar Red Neuronal
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Training Progress & Results -->
+                <div class="col-lg-8">
+                    <div class="results-card" id="trainingResults">
+                        <div class="results-empty">
+                            <div class="empty-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h5>Modelo No Entrenado</h5>
+                            <p>Presione "Entrenar Red Neuronal" para comenzar el proceso de Backpropagation con los datos históricos incorporados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prediction Section -->
+    <section id="prediccion" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-badge">PASO 3</span>
+                <h2 class="section-title">Nueva Predicción</h2>
+                <p class="section-subtitle">Ingrese los datos de una orden para predecir su nivel de gasto</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-6">
+                    <div class="prediction-form-card">
+                        <h5 class="form-title"><i class="fas fa-edit me-2"></i>Datos de la Orden</h5>
+                        <form id="predictionForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Tipo de Documento (TIP_DOC)</label>
+                                    <select class="form-select" id="predTipDoc" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="10">10 - Orden de Compra</option>
+                                        <option value="20">20 - Orden de Servicio</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Objeto de Contratación (OBJ_CONT)</label>
+                                    <select class="form-select" id="predObjCont" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="1">1 - Bienes</option>
+                                        <option value="2">2 - Servicios</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Rubro / Fuente de Financiamiento (ORG_CONT)</label>
+                                    <input type="text" class="form-control" id="predOrgCont" placeholder="Ej: 2.1.1.1" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Clasificador Económico (LST_AOS1)</label>
+                                    <input type="text" class="form-control" id="predLstAos1" placeholder="Ej: 2.3.11.21" required>
+                                </div>
+                                <div class="col-12" id="predEstDocContainer">
+                                    <label class="form-label">Estado de la Orden (EST_DOC)</label>
+                                    <select class="form-select" id="predEstDoc">
+                                        <option value="">Seleccione...</option>
+                                        <option value="2">2 - Borrador</option>
+                                        <option value="3">3 - Anulada / Resoluta</option>
+                                        <option value="4">4 - Publicada / Conformidad</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mt-4" id="btnPredict" disabled>
+                                <i class="fas fa-magic me-2"></i>Ejecutar Predicción
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="prediction-result-card d-none" id="predictionResult">
+                        <div class="result-header">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Resultado de la Predicción</span>
+                        </div>
+                        <div class="result-body">
+                            <div class="prediction-nivel" id="resultNivel">
+                                <div class="nivel-icon" id="resultNivelIcon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="nivel-text" id="resultNivelText">Gasto Normal</div>
+                                <div class="nivel-badge" id="resultNivelBadge">Bajo</div>
+                            </div>
+                            <div class="confidence-section">
+                                <div class="confidence-header">
+                                    <span>Nivel de Confianza</span>
+                                    <span class="confidence-value" id="resultConfidence">94.8%</span>
+                                </div>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" id="resultConfidenceBar"></div>
+                                </div>
+                            </div>
+                            <div class="probabilities-section">
+                                <h6>Probabilidades por Clase</h6>
+                                <div class="prob-item">
+                                    <span class="prob-label">
+                                        <span class="prob-dot nivel-bajo"></span>Bajo
+                                    </span>
+                                    <div class="prob-track">
+                                        <div class="prob-fill nivel-bajo-fill" id="probBajo"></div>
+                                    </div>
+                                    <span class="prob-value" id="probBajoValue">0%</span>
+                                </div>
+                                <div class="prob-item">
+                                    <span class="prob-label">
+                                        <span class="prob-dot nivel-medio"></span>Medio
+                                    </span>
+                                    <div class="prob-track">
+                                        <div class="prob-fill nivel-medio-fill" id="probMedio"></div>
+                                    </div>
+                                    <span class="prob-value" id="probMedioValue">0%</span>
+                                </div>
+                                <div class="prob-item">
+                                    <span class="prob-label">
+                                        <span class="prob-dot nivel-alto"></span>Alto
+                                    </span>
+                                    <div class="prob-track">
+                                        <div class="prob-fill nivel-alto-fill" id="probAlto"></div>
+                                    </div>
+                                    <span class="prob-value" id="probAltoValue">0%</span>
+                                </div>
+                            </div>
+                            <div class="actual-comparison d-none" id="actualComparison">
+                                <div class="comparison-divider"></div>
+                                <h6>Comparación con Valor Real</h6>
+                                <div class="comparison-row">
+                                    <span>Monto ingresado:</span>
+                                    <span class="comparison-monto" id="comparisonMonto">S/. 0.00</span>
+                                </div>
+                                <div class="comparison-row">
+                                    <span>Nivel real:</span>
+                                    <span class="comparison-badge" id="comparisonBadge">-</span>
+                                </div>
+                                <div class="comparison-row">
+                                    <span>Coincidencia:</span>
+                                    <span class="comparison-match" id="comparisonMatch">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interpretación de Niveles de Gasto -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="interpretation-card">
+                        <h5 class="interpretation-title">
+                            <i class="fas fa-lightbulb me-2"></i>Interpretación de Niveles de Gasto
+                        </h5>
+                        <p class="interpretation-subtitle">
+                            El modelo clasifica el nivel de gasto basándose en los percentiles del monto histórico de órdenes de compra y servicio del Gobierno Regional de Arequipa.
+                        </p>
+                        <div class="row g-4 mt-2">
+                            <div class="col-md-4">
+                                <div class="nivel-card nivel-bajo-card">
+                                    <div class="nivel-card-icon">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </div>
+                                    <h6>Gasto Bajo</h6>
+                                    <div class="nivel-range">≤ Percentil 33</div>
+                                    <p class="nivel-desc">
+                                        Montos inferiores al tercil inferior de la distribución histórica. Corresponden a adquisiciones de bajo valor como insumos menores, servicios administrativos básicos o bienes de consumo corriente.
+                                    </p>
+                                    <div class="nivel-examples">
+                                        <span class="example-tag">Insumos de oficina</span>
+                                        <span class="example-tag">Servicios menores</span>
+                                        <span class="example-tag">Materiales básicos</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="nivel-card nivel-medio-card">
+                                    <div class="nivel-card-icon">
+                                        <i class="fas fa-minus"></i>
+                                    </div>
+                                    <h6>Gasto Medio</h6>
+                                    <div class="nivel-range">Percentil 33 < x ≤ Percentil 66</div>
+                                    <p class="nivel-desc">
+                                        Montos en el rango intermedio. Incluyen contrataciones de valor moderado como servicios especializados, equipamiento estándar o adquisiciones de bienes con requerimientos técnicos definidos.
+                                    </p>
+                                    <div class="nivel-examples">
+                                        <span class="example-tag">Equipos de oficina</span>
+                                        <span class="example-tag">Servicios técnicos</span>
+                                        <span class="example-tag">Materiales de construcción</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="nivel-card nivel-alto-card">
+                                    <div class="nivel-card-icon">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </div>
+                                    <h6>Gasto Alto</h6>
+                                    <div class="nivel-range">> Percentil 66</div>
+                                    <p class="nivel-desc">
+                                        Montos superiores al tercil superior. Representan inversiones significativas como obras de infraestructura, adquisición de maquinaria pesada, servicios de consultoría especializada o proyectos de gran envergadura.
+                                    </p>
+                                    <div class="nivel-examples">
+                                        <span class="example-tag">Obras de infraestructura</span>
+                                        <span class="example-tag">Maquinaria pesada</span>
+                                        <span class="example-tag">Consultoría especializada</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interpretation-footer mt-4">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <span>Los percentiles se calculan automáticamente a partir de la base de datos histórica incorporada. El modelo aprende estos umbrales durante el entrenamiento.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Section (Hidden by default, accessible via nav) -->
+    <section id="admin" class="section-padding bg-light d-none">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-badge bg-secondary">ADMIN</span>
+                <h2 class="section-title">Administración del Modelo</h2>
+                <p class="section-subtitle">Actualizar base de datos histórica y reentrenar el modelo</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-8">
+                    <div class="admin-card">
+                        <div class="admin-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Zona de Administración</span>
+                        </div>
+                        <div class="admin-body">
+                            <div class="alert alert-info d-flex align-items-start">
+                                <i class="fas fa-info-circle me-2 mt-1"></i>
+                                <div>
+                                    <strong>¿Qué hace esta sección?</strong>
+                                    <p class="mb-0">Permite a un administrador cargar un nuevo archivo Excel o CSV para actualizar la base de datos histórica del sistema. Después de cargar, se debe entrenar el modelo nuevamente.</p>
+                                </div>
+                            </div>
+
+                            <!-- Upload Area -->
+                            <div class="upload-card mt-4" id="adminUploadArea">
+                                <div class="upload-content">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <h4>Actualizar Base de Datos</h4>
+                                    <p class="text-muted">Arrastre y suelte o haga clic para seleccionar un nuevo archivo</p>
+                                    <div class="upload-formats">
+                                        <span class="format-badge"><i class="fas fa-file-excel me-1"></i>.xlsx</span>
+                                        <span class="format-badge"><i class="fas fa-file-csv me-1"></i>.csv</span>
+                                    </div>
+                                    <input type="file" id="adminFileInput" accept=".csv,.xlsx,.xls" class="d-none">
+                                    <button class="btn btn-primary mt-3" onclick="document.getElementById('adminFileInput').click()">
+                                        <i class="fas fa-folder-open me-2"></i>Seleccionar Archivo
+                                    </button>
+                                </div>
+                                <div class="upload-progress d-none" id="adminUploadProgress">
+                                    <div class="progress-ring">
+                                        <svg viewBox="0 0 100 100">
+                                            <circle class="progress-ring-bg" cx="50" cy="50" r="45"/>
+                                            <circle class="progress-ring-fill" cx="50" cy="50" r="45" id="adminProgressCircle"/>
+                                        </svg>
+                                        <div class="progress-text" id="adminProgressText">0%</div>
+                                    </div>
+                                    <p class="mt-3">Procesando datos...</p>
+                                </div>
+                            </div>
+
+                            <!-- Admin Actions -->
+                            <div class="admin-actions mt-4">
+                                <button class="btn btn-outline-danger w-100" id="btnResetData">
+                                    <i class="fas fa-undo me-2"></i>Restaurar Base de Datos Original
+                                </button>
+                            </div>
+
+                            <!-- Admin Results -->
+                            <div id="adminResults" class="mt-4 d-none">
+                                <div class="alert alert-success">
+                                    <i class="fas fa-check-circle me-2"></i>
+                                    <span id="adminResultMessage"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="footer-brand">
+                        <i class="fas fa-brain"></i>
+                        <span>IA Gobierno Arequipa</span>
+                    </div>
+                    <p class="footer-text">Sistema Inteligente para la Predicción del Nivel de Gasto de Órdenes de Compra y Servicio</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="footer-copyright">© 2026</p>
+                    <p class="footer-tech">Versión 0.1</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
